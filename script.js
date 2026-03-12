@@ -83,7 +83,7 @@ regForm.addEventListener('submit', function (event) {
 // ==========================================
 // 4. LOGIN FORM VALIDATION
 // ==========================================
-loginForm.addEventListener('submit', function (event) {
+loginForm.addEventListener('submit',  async function (event) {
     // Stop the page from refreshing on submit
     event.preventDefault();
 
@@ -111,10 +111,24 @@ loginForm.addEventListener('submit', function (event) {
     }
 
     // Final Result: If all checks pass, alert the user and clear the form
-    if (isValid) {
-        alert('Login Successful!');
-        loginForm.reset(); // Corrected: Resets the login form fields after success
+   // Inside your loginForm.addEventListener('submit', ...)
+if (isValid) {
+    const response = await fetch('http://localhost:3000/login', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email, password })
+    });
+
+    const data = await response.json();
+
+    if (data.success) {
+        localStorage.setItem('userRole', data.role); // Store role locally
+        window.location.href = 'dashboard.html';     // Go to dashboard
+    } else {
+        alert(data.message);
     }
+}
+
 });
 
 // ==========================================
