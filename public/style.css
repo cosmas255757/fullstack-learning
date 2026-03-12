@@ -12,7 +12,8 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    padding: 20px; /* Padding for small mobile screens */
+    padding: 20px;
+    /* Padding for small mobile screens */
 }
 
 /* 2. Responsive Form Container */
@@ -22,8 +23,9 @@ body {
     border-radius: 16px;
     box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
     width: 100%;
-    max-width: 450px; /* Desktop width */
-    
+    max-width: 450px;
+    /* Desktop width */
+
     /* Animation: Fade in and Slide up */
     animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
     transition: transform 0.3s ease;
@@ -34,7 +36,8 @@ h2 {
     text-align: center;
     color: #1a1a1a;
     margin-bottom: 1.5rem;
-    font-size: clamp(1.5rem, 5vw, 1.8rem); /* Fluid typography */
+    font-size: clamp(1.5rem, 5vw, 1.8rem);
+    /* Fluid typography */
 }
 
 label {
@@ -94,7 +97,8 @@ input:focus {
     padding: 6px 10px;
     border-radius: 6px;
     transition: all 0.2s ease;
-    width: auto !important; /* Overrides global button width */
+    width: auto !important;
+    /* Overrides global button width */
 }
 
 .toggle-password:hover {
@@ -162,13 +166,25 @@ a:hover {
 
 /* 9. Keyframe Animations */
 @keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
 
 /* 10. Device Specific Adjustments */
@@ -178,16 +194,21 @@ a:hover {
    ========================================== */
 @media (max-width: 480px) {
     body {
-        padding: 0; /* Remove padding to allow the form to breathe */
-        background: #61326d; /* Your preferred solid mobile background */
-        align-items: flex-end; /* Modern "bottom-sheet" feel on very small screens */
+        padding: 0;
+        /* Remove padding to allow the form to breathe */
+        background: #61326d;
+        /* Your preferred solid mobile background */
+        align-items: flex-end;
+        /* Modern "bottom-sheet" feel on very small screens */
     }
 
     .form-container {
         padding: 2rem 1.5rem;
-        border-radius: 24px 24px 0 0; /* Rounded top corners like a mobile app */
+        border-radius: 24px 24px 0 0;
+        /* Rounded top corners like a mobile app */
         max-width: 100%;
-        min-height: 80vh; /* Takes up most of the screen */
+        min-height: 80vh;
+        /* Takes up most of the screen */
         box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.2);
         margin: 0;
         border: none;
@@ -195,20 +216,24 @@ a:hover {
 
     /* Improve touch targets for fingers */
     input {
-        padding: 16px; /* Larger area to tap */
-        font-size: 16px !important; /* Prevents iOS from auto-zooming on focus */
+        padding: 16px;
+        /* Larger area to tap */
+        font-size: 16px !important;
+        /* Prevents iOS from auto-zooming on focus */
         border-radius: 12px;
     }
 
     button[type="submit"] {
-        padding: 18px; /* Bigger button for thumb-tapping */
+        padding: 18px;
+        /* Bigger button for thumb-tapping */
         font-size: 1.1rem;
         border-radius: 12px;
         margin-top: 20px;
     }
 
     .toggle-password {
-        padding: 10px 15px; /* Easier to hit the Show/Hide button */
+        padding: 10px 15px;
+        /* Easier to hit the Show/Hide button */
         right: 8px;
     }
 
@@ -233,9 +258,12 @@ a:hover {
    SMART TV & REMOTE NAVIGATION
    ========================================== */
 @media (hover: none) {
+
     /* High-contrast focus for D-pad navigation */
-    input:focus, button:focus, a:focus {
-        outline: 4px solid #f6ad55 !important; 
+    input:focus,
+    button:focus,
+    a:focus {
+        outline: 4px solid #f6ad55 !important;
         outline-offset: 2px;
         border-color: transparent;
     }
@@ -245,25 +273,65 @@ a:hover {
    DARK MODE (Enhanced for AMOLED screens)
    ========================================== */
 @media (prefers-color-scheme: dark) {
-    body { background: #000000; } /* Pure black for battery saving on OLED */
-    
+    body {
+        background: #000000;
+    }
+
+    /* Pure black for battery saving on OLED */
+
     .form-container {
         background: #121212;
         border: 1px solid #2d3748;
     }
-    
-    h2, label { color: #ffffff; }
-    
-    input { 
-        background: #1a1a1a; 
-        border-color: #333; 
-        color: #fff; 
+
+    h2,
+    label {
+        color: #ffffff;
     }
-    
+
+    input {
+        background: #1a1a1a;
+        border-color: #333;
+        color: #fff;
+    }
+
     input:focus {
         background: #222;
         border-color: #667eea;
     }
-    
-    p { color: #cbd5e0; }
+
+    p {
+        color: #cbd5e0;
+    }
+}
+
+
+.dashboard-card {
+    background: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-width: 500px;
+    margin: 50px auto;
+}
+
+.role-badge {
+    display: inline-block;
+    padding: 5px 15px;
+    border-radius: 20px;
+    background: #e0e0e0;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+}
+
+.logout-btn {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #ff4d4d;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
 }

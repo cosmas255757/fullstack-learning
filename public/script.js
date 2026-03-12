@@ -78,10 +78,10 @@ regForm.addEventListener('submit', async function (event) {
             const response = await fetch('http://localhost:3000/api/register', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ 
-                    username, 
-                    email, 
-                    password, 
+                body: JSON.stringify({
+                    username,
+                    email,
+                    password,
                     role: 'borrower' // Default role for new signups
                 })
             });
@@ -140,14 +140,13 @@ loginForm.addEventListener('submit', async function (event) {
             });
 
             const data = await response.json();
-
             if (data.success) {
-                // Store the role and name in localStorage for the dashboard
-                localStorage.setItem('userRole', data.role);
-                localStorage.setItem('userName', data.username);
-                
-                // Redirect to dashboard
-                window.location.href = 'dashboard.html';
+
+                localStorage.setItem("token", data.token);
+                localStorage.setItem("userRole", data.role);
+                localStorage.setItem("userName", data.username);
+
+                window.location.href = "dashboard.html";
             } else {
                 alert(data.message || 'Login failed.');
             }
@@ -168,4 +167,31 @@ document.querySelectorAll('.toggle-password').forEach(button => {
         passwordInput.setAttribute('type', isPassword ? 'text' : 'password');
         this.textContent = isPassword ? 'Hide' : 'Show';
     });
+});
+
+
+// ==========================================
+// 1. SESSION CHECK & DISPLAY LOGIC
+// ==========================================
+document.addEventListener('DOMContentLoaded', () => {
+    const role = localStorage.getItem('userRole');
+    const name = localStorage.getItem('userName');
+
+    // If no role is found, the user isn't logged in, redirect to login page
+    if (!role) {
+        window.location.href = 'index.html';
+        return;
+    }
+
+    // Display the specific message requested
+    document.getElementById('welcomeMessage').innerText = `HELLO ${name.toUpperCase()}, YOU ARE ${role.toUpperCase()}`;
+    document.getElementById('roleDisplay').innerText = `Role: ${role.replace('_', ' ')}`;
+});
+
+// ==========================================
+// 2. LOGOUT LOGIC
+// ==========================================
+document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.clear(); // Clear all user data
+    window.location.href = 'index.html'; // Go back to login
 });
