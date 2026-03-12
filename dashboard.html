@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .dashboard-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            text-align: center;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+        .role-badge {
+            display: inline-block;
+            padding: 5px 15px;
+            border-radius: 20px;
+            background: #e0e0e0;
+            font-weight: bold;
+            color: #333;
+            margin-top: 10px;
+        }
+        .logout-btn {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background: #ff4d4d;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="dashboard-card">
+        <!-- The requested message display -->
+        <h1 id="welcomeMessage">Loading...</h1>
+        <div id="roleDisplay" class="role-badge"></div>
+        
+        <br>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
+
+    <script>
+        // ==========================================
+        // 1. SESSION CHECK & DISPLAY LOGIC
+        // ==========================================
+        document.addEventListener('DOMContentLoaded', () => {
+            const role = localStorage.getItem('userRole');
+            const name = localStorage.getItem('userName');
+
+            // If no role is found, the user isn't logged in, redirect to login page
+            if (!role) {
+                window.location.href = 'index.html';
+                return;
+            }
+
+            // Display the specific message requested
+            document.getElementById('welcomeMessage').innerText = `HELLO ${name.toUpperCase()}, YOU ARE ${role.toUpperCase()}`;
+            document.getElementById('roleDisplay').innerText = `Role: ${role.replace('_', ' ')}`;
+        });
+
+        // ==========================================
+        // 2. LOGOUT LOGIC
+        // ==========================================
+        document.getElementById('logoutBtn').addEventListener('click', () => {
+            localStorage.clear(); // Clear all user data
+            window.location.href = 'index.html'; // Go back to login
+        });
+    </script>
+</body>
+</html>
