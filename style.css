@@ -1,0 +1,204 @@
+/* 1. Global Reset & Universal Layout */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px; /* Padding for small mobile screens */
+}
+
+/* 2. Responsive Form Container */
+.form-container {
+    background: #ffffff;
+    padding: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 450px; /* Desktop width */
+    
+    /* Animation: Fade in and Slide up */
+    animation: slideUp 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: transform 0.3s ease;
+}
+
+/* 3. Typography & Headings */
+h2 {
+    text-align: center;
+    color: #1a1a1a;
+    margin-bottom: 1.5rem;
+    font-size: clamp(1.5rem, 5vw, 1.8rem); /* Fluid typography */
+}
+
+label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    color: #4a4a4a;
+    font-size: 0.9rem;
+}
+
+/* 4. Interactive Inputs */
+.form-group {
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 2px solid #edf2f7;
+    border-radius: 10px;
+    font-size: 1rem;
+    background: #f8fafc;
+    transition: all 0.3s ease;
+}
+
+/* Smart TV & High-Res focus styles */
+input:focus {
+    outline: none;
+    background: #3d0c0c;
+    border-color: #667eea;
+    box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.15);
+    transform: translateY(-1px);
+}
+
+/* 5. Password Wrapper & Toggle */
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper input {
+    padding-right: 70px;
+}
+
+.toggle-password {
+    position: absolute;
+    right: 12px;
+    background: #edf2f7;
+    border: none;
+    color: #667eea;
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    cursor: pointer;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: all 0.2s ease;
+    width: auto !important; /* Overrides global button width */
+}
+
+.toggle-password:hover {
+    background: #e2e8f0;
+    color: #4c51bf;
+}
+
+/* 6. Professional Error States */
+.error-msg {
+    color: #e53e3e;
+    font-size: 0.8rem;
+    margin-top: 4px;
+    font-weight: 500;
+    min-height: 1.2rem;
+    /* Slide down animation for errors */
+    animation: fadeIn 0.3s ease;
+}
+
+/* 7. Animated Primary Buttons */
+button[type="submit"] {
+    width: 100%;
+    padding: 14px;
+    background: linear-gradient(to right, #667eea, #764ba2);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+button[type="submit"]:hover {
+    filter: brightness(1.1);
+    box-shadow: 0 7px 14px rgba(0, 0, 0, 0.15);
+    transform: translateY(-2px);
+}
+
+button[type="submit"]:active {
+    transform: translateY(0);
+}
+
+/* 8. Toggle Links */
+p {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.95rem;
+    color: #718096;
+}
+
+a {
+    color: #667eea;
+    text-decoration: none;
+    font-weight: 700;
+    padding: 5px;
+    transition: color 0.2s;
+}
+
+a:hover {
+    color: #764ba2;
+    text-decoration: underline;
+}
+
+/* 9. Keyframe Animations */
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* 10. Device Specific Adjustments */
+
+/* Mobile Phones */
+@media (max-width: 480px) {
+    .form-container {
+        padding: 1.5rem;
+        border-radius: 0; /* Optional: full screen feel on mobile */
+        max-width: 100%;
+    }
+    body {
+        padding: 10px;
+        background: #fff; /* Solid background for faster mobile rendering */
+    }
+}
+
+/* Smart TV / Remote Navigation Focus */
+@media (hover: none) {
+    input:focus, button:focus {
+        border: 3px solid #000; /* High visibility for TV remote navigation */
+    }
+}
+
+/* Dark Mode Preference */
+@media (prefers-color-scheme: dark) {
+    .form-container {
+        background: #1a202c;
+    }
+    h2, label { color: #f7fafc; }
+    input { background: #2d3748; border-color: #4a5568; color: white; }
+    p { color: #a0aec0; }
+}

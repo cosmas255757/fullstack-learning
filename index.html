@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration and Login</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <!-- Registration Form (Hidden by default) -->
+        <form id="registrationForm" style="display: none;">
+            <h2>Register To Create Account</h2>
+            
+            <div class="form-group">
+                <label for="regUsername">Username</label>
+                <input type="text" id="regUsername" name="username" required>
+                <span class="error-msg" id="usernameError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="regEmail">Email</label>
+                <input type="email" id="regEmail" name="email"  required>
+                <span class="error-msg" id="regEmailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="regPassword">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="regPassword" name="password" required>
+                    <button type="button" class="toggle-password">Show</button>
+                </div>
+                <span class="error-msg" id="regPassError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="confirmPassword" name="confirmPassword" required>
+                    <button type="button" class="toggle-password">Show</button>
+                </div>
+                <span class="error-msg" id="confirmError"></span>
+            </div>
+
+            <button type="submit">Register</button>
+            <p>Already have an account? <a href="#" id="showLogin">Login here</a></p>
+        </form>
+
+        <!-- Login Form (Visible by default) -->
+        <form id="loginForm">
+            <h2>Login</h2>
+            
+            <div class="form-group">
+                <label for="loginEmail">Email</label>
+                <input type="email" id="loginEmail" name="email" required>
+                <span class="error-msg" id="loginEmailError"></span>
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">Password</label>
+                <div class="password-wrapper">
+                    <input type="password" id="loginPassword" name="password" required>
+                    <button type="button" class="toggle-password">Show</button>
+                </div>
+                <span class="error-msg" id="loginPassError"></span>
+            </div>
+
+            <button type="submit">Login</button>
+            <p>Don't have an account? <a href="#" id="showRegister">Register here</a></p>
+        </form>
+    </div>
+<script src="script.js"></script>
+</body>
+</html>
