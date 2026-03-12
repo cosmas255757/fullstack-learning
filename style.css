@@ -173,32 +173,97 @@ a:hover {
 
 /* 10. Device Specific Adjustments */
 
-/* Mobile Phones */
+/* ==========================================
+   ADVANCED MOBILE OPTIMIZATION (Phones)
+   ========================================== */
 @media (max-width: 480px) {
-    .form-container {
-        padding: 1.5rem;
-        border-radius: 0; /* Optional: full screen feel on mobile */
-        max-width: 100%;
-    }
     body {
-        padding: 10px;
-        background: #713d7e; /* Solid background for faster mobile rendering */
+        padding: 0; /* Remove padding to allow the form to breathe */
+        background: #713d7e; /* Your preferred solid mobile background */
+        align-items: flex-end; /* Modern "bottom-sheet" feel on very small screens */
     }
-}
 
-/* Smart TV / Remote Navigation Focus */
-@media (hover: none) {
-    input:focus, button:focus {
-        border: 3px solid #000; /* High visibility for TV remote navigation */
-    }
-}
-
-/* Dark Mode Preference */
-@media (prefers-color-scheme: dark) {
     .form-container {
-        background: #1a202c;
+        padding: 2rem 1.5rem;
+        border-radius: 24px 24px 0 0; /* Rounded top corners like a mobile app */
+        max-width: 100%;
+        min-height: 80vh; /* Takes up most of the screen */
+        box-shadow: 0 -10px 25px rgba(0, 0, 0, 0.2);
+        margin: 0;
+        border: none;
     }
-    h2, label { color: #f7fafc; }
-    input { background: #2d3748; border-color: #4a5568; color: white; }
-    p { color: #a0aec0; }
+
+    /* Improve touch targets for fingers */
+    input {
+        padding: 16px; /* Larger area to tap */
+        font-size: 16px !important; /* Prevents iOS from auto-zooming on focus */
+        border-radius: 12px;
+    }
+
+    button[type="submit"] {
+        padding: 18px; /* Bigger button for thumb-tapping */
+        font-size: 1.1rem;
+        border-radius: 12px;
+        margin-top: 20px;
+    }
+
+    .toggle-password {
+        padding: 10px 15px; /* Easier to hit the Show/Hide button */
+        right: 8px;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+
+    /* Add a small "handle" at the top to look like a mobile drawer */
+    .form-container::before {
+        content: "";
+        display: block;
+        width: 40px;
+        height: 5px;
+        background: #e2e8f0;
+        border-radius: 10px;
+        margin: -10px auto 20px auto;
+    }
+}
+
+/* ==========================================
+   SMART TV & REMOTE NAVIGATION
+   ========================================== */
+@media (hover: none) {
+    /* High-contrast focus for D-pad navigation */
+    input:focus, button:focus, a:focus {
+        outline: 4px solid #f6ad55 !important; 
+        outline-offset: 2px;
+        border-color: transparent;
+    }
+}
+
+/* ==========================================
+   DARK MODE (Enhanced for AMOLED screens)
+   ========================================== */
+@media (prefers-color-scheme: dark) {
+    body { background: #000000; } /* Pure black for battery saving on OLED */
+    
+    .form-container {
+        background: #121212;
+        border: 1px solid #2d3748;
+    }
+    
+    h2, label { color: #ffffff; }
+    
+    input { 
+        background: #1a1a1a; 
+        border-color: #333; 
+        color: #fff; 
+    }
+    
+    input:focus {
+        background: #222;
+        border-color: #667eea;
+    }
+    
+    p { color: #cbd5e0; }
 }
