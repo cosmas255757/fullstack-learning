@@ -22,22 +22,25 @@ document.addEventListener('DOMContentLoaded', async () => {
     // ==========================================
     // 2. ROLE-BASED VISIBILITY (UI SECTIONS)
     // ==========================================
+
     const sections = {
         management: document.getElementById('managementSection'),
         system: document.getElementById('systemSection'),
         borrower: document.getElementById('borrowerSection')
     };
 
+    // Use 'flex' instead of 'block' to maintain the button grid layout
     if (role === 'superadmin') {
-        if (sections.management) sections.management.style.display = 'block';
-        if (sections.system) sections.system.style.display = 'block';
+        if (sections.management) sections.management.style.display = 'flex';
+        if (sections.system) sections.system.style.display = 'flex';
     }
     else if (role === 'admin') {
-        if (sections.management) sections.management.style.display = 'block';
+        if (sections.management) sections.management.style.display = 'flex';
     }
     else if (role === 'borrower') {
-        if (sections.borrower) sections.borrower.style.display = 'block';
+        if (sections.borrower) sections.borrower.style.display = 'flex';
     }
+
 
     // ==========================================
     // 3. FETCH ROLE-SPECIFIC DATA FROM API
@@ -50,11 +53,47 @@ document.addEventListener('DOMContentLoaded', async () => {
         const result = await response.json();
 
         if (result.success) {
-            console.log("Fetched Role Data:", result.data);
-            // Example: Update a specific stat if it exists in the data
-            // if (result.data.stats) document.getElementById('statsBox').innerText = result.data.stats;
+            const data = result.data;
+            console.log("Fetched Dashboard Data:", data);
+
+            // 1. Update Global/Shared Content (News)
+            const commonSection = document.getElementById('commonSection');
+            if (data.sharedNews && commonSection) {
+                const newsEl = document.createElement('p');
+                newsEl.className = 'data-text';
+                newsEl.innerHTML = `<strong>News:</strong> ${data.sharedNews}`;
+                commonSection.prepend(newsEl); // Put news at the top of the common section
+            }
+
+            // 2. Update Admin/SuperAdmin Stats
+            if (data.stats) {
+                const managementSection = document.getElementById('managementSection');
+                const statsEl = document.createElement('div');
+                statsEl.className = 'data-text';
+                statsEl.innerText = data.stats;
+                managementSection.prepend(statsEl);
+            }
+
+            // 3. Update Borrower Loan Info
+            if (data.myLoans) {
+                const borrowerSection = document.getElementById('borrowerSection');
+                const loanEl = document.createElement('div');
+                loanEl.className = 'data-text';
+                loanEl.innerText = data.myLoans;
+                borrowerSection.prepend(loanEl);
+            }
+
+            // 4. Update SuperAdmin Logs (if applicable)
+            if (data.adminLogs && Array.isArray(data.adminLogs)) {
+                const systemSection = document.getElementById('systemSection');
+                const logContainer = document.createElement('div');
+                logContainer.className = 'data-text log-list';
+                logContainer.innerHTML = '<strong>Logs:</strong><br>' + data.adminLogs.join('<br>');
+                systemSection.prepend(logContainer);
+            }
+
         } else if (response.status === 403 || response.status === 401) {
-            // Token expired or invalid
+            // Handle Session Expiry
             localStorage.clear();
             window.location.href = 'index.html';
         }

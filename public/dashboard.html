@@ -72,7 +72,17 @@
             margin-top: 1.5rem;
             padding-top: 1.5rem;
             border-top: 1px solid var(--glass-border);
+            /* Set up flexbox but keep it hidden via JS initially */
+            display: none;
+            flex-wrap: wrap;
+            gap: 10px;
             animation: slideUp 0.4s ease-out forwards;
+        }
+
+        section button {
+            flex: 1 1 calc(50% - 10px);
+            /* Makes buttons 2-per-row */
+            min-width: 140px;
         }
 
         h3 {
@@ -155,6 +165,15 @@
                 margin: 0;
             }
         }
+
+        .data-text {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            border-left: 3px solid var(--primary);
+        }
     </style>
     <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
@@ -169,8 +188,8 @@
         <!-- 1. Shared by SuperAdmin & Admin -->
         <section id="managementSection" style="display: none;">
             <h3>Management Tools</h3>
+            <p id="adminStats" class="data-text"></p> <!-- DATA SLOT -->
             <button>View All Users</button>
-            <button>Approve Loans</button>
         </section>
 
         <!-- 2. Exclusive to SuperAdmin -->
@@ -183,8 +202,8 @@
         <!-- 3. Exclusive to Borrower -->
         <section id="borrowerSection" style="display: none;">
             <h3>My Loans</h3>
+            <p id="loanData" class="data-text"></p> <!-- DATA SLOT -->
             <button>Apply for New Loan</button>
-            <button>Payment History</button>
         </section>
 
         <!-- 4. Shared by Everyone -->
