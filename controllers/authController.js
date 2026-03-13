@@ -75,3 +75,38 @@ export const loginUser = async (req, res) => {
         res.status(500).json({ success: false });
     }
 };
+
+// Add this to your authController.js
+export const getDashboardData = async (req, res) => {
+    const { role, id } = req.user;
+
+    try {
+        let dashboardContent = {
+            sharedNews: "System update: New loan policies starting next month.", // Shared by ALL
+        };
+
+        // 1. Logic for SuperAdmin (Sees everything)
+        if (role === "superadmin") {
+            dashboardContent.stats = "Total System Users: 500 | Total Loans: $2M";
+            dashboardContent.adminLogs = ["User X logged in", "User Y deleted"];
+        } 
+        
+        // 2. Logic for Admin (Sees management data)
+        else if (role === "admin") {
+            dashboardContent.stats = "Your Branch Users: 50 | Pending Approvals: 5";
+        } 
+        
+        // 3. Logic for Borrower (Sees personal data)
+        else if (role === "borrower") {
+            dashboardContent.myLoans = "You have 1 active loan of $5,000";
+        }
+
+        res.json({
+            success: true,
+            data: dashboardContent
+        });
+
+    } catch (error) {
+        res.status(500).json({ success: false, message: "Error fetching data" });
+    }
+};
