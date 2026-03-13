@@ -174,45 +174,114 @@
             font-size: 0.9rem;
             border-left: 3px solid var(--primary);
         }
+        .loan-container {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+    text-align: left;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.btn-submit {
+    background-color: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.loan-item {
+    background: white;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-left: 5px solid #007bff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.status-pending { color: orange; font-weight: bold; }
+.status-approved { color: green; font-weight: bold; }
+.status-rejected { color: red; font-weight: bold; }
+
     </style>
     <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
 
 <body>
     <div class="dashboard-card">
-        <h1 id="welcomeMessage">Loading...</h1>
+        <h1 id="welcomeMessage">Loading Dashboard...</h1>
         <div id="roleDisplay" class="role-badge"></div>
 
-        <!-- ROLE SPECIFIC SECTIONS -->
-
-        <!-- 1. Shared by SuperAdmin & Admin -->
-        <section id="managementSection" style="display: none;">
-            <h3>Management Tools</h3>
-            <p id="adminStats" class="data-text"></p> <!-- DATA SLOT -->
-            <button>View All Users</button>
+        <!-- 1. ADMIN / SUPERADMIN SECTION -->
+        <section id="managementSection">
+            <h3>Loan Management (Admin)</h3>
+            <table class="admin-table">
+                <thead>
+                    <tr>
+                        <th>User</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody id="allLoansList">
+                    <!-- Loaded via JS -->
+                </tbody>
+            </table>
         </section>
 
-        <!-- 2. Exclusive to SuperAdmin -->
-        <section id="systemSection" style="display: none;">
-            <h3>System Settings</h3>
-            <button>View Server Logs</button>
-            <button>Delete Accounts</button>
+        <!-- 2. BORROWER SECTION -->
+        <section id="borrowerSection">
+            <div class="loan-container">
+                <h3>Apply for a Loan</h3>
+                <form id="loanForm">
+                    <div class="form-group">
+                        <label>Amount (Tsh)</label>
+                        <input type="number" id="loanAmount" min="50000" max="200000" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Living Location</label>
+                        <input type="text" id="loanLocation" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Installment Plan</label>
+                        <select id="installmentType">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Reason</label>
+                        <textarea id="loanReason" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-submit">Submit Application</button>
+                </form>
+            </div>
+
+            <h4 style="margin-top: 2rem;">My Application History</h4>
+            <div id="loanHistoryList">
+                <!-- Loaded via JS -->
+            </div>
         </section>
 
-        <!-- 3. Exclusive to Borrower -->
-        <section id="borrowerSection" style="display: none;">
-            <h3>My Loans</h3>
-            <p id="loanData" class="data-text"></p> <!-- DATA SLOT -->
-            <button>Apply for New Loan</button>
-        </section>
-
-        <!-- 4. Shared by Everyone -->
-        <section id="commonSection">
-            <h3>Account</h3>
-            <button>Edit Profile</button>
-        </section>
-
-        <br>
         <button id="logoutBtn" class="logout-btn">Logout</button>
     </div>
 

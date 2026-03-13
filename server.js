@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import dotenv from "dotenv";
 import authRoutes from "./routes/authRoutes.js";
+import loanRoutes from "./routes/loanRoutes.js"; // Import the new routes
 
 dotenv.config();
 
@@ -15,6 +16,7 @@ app.use(express.static("public"));
 
 // routes
 app.use("/api", authRoutes);
+app.use("/api/loans", loanRoutes); 
 
 const PORT = 3000;
 
