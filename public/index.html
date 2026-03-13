@@ -7,151 +7,157 @@
     <title>Registration and Login</title>
     <style>
         :root {
-    --primary: #6366f1;
-    --primary-hover: #4f46e5;
-    --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
-    --text-color: #ffffff;
-    --error: #ff4d4d;
-}
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
+            --text-color: #ffffff;
+            --error: #ff4d4d;
+        }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, #1e1e2f 0%, #2d3436 100%);
-    color: var(--text-color);
-}
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #1e1e2f 0%, #2d3436 100%);
+            color: var(--text-color);
+        }
 
-.form-container {
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
-    border: 1px solid var(--glass-border);
-    padding: 2.5rem;
-    border-radius: 20px;
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
-    width: 100%;
-    max-width: 400px;
-    transition: transform 0.3s ease;
-}
+        .form-container {
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border: 1px solid var(--glass-border);
+            padding: 2.5rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            width: 100%;
+            max-width: 400px;
+            transition: transform 0.3s ease;
+        }
 
-h2 {
-    text-align: center;
-    margin-bottom: 1.5rem;
-    font-weight: 600;
-    letter-spacing: 1px;
-}
+        h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
 
-.form-group {
-    margin-bottom: 1.2rem;
-    position: relative;
-}
+        .form-group {
+            margin-bottom: 1.2rem;
+            position: relative;
+        }
 
-label {
-    display: block;
-    margin-bottom: 0.5rem;
-    font-size: 0.9rem;
-    opacity: 0.8;
-}
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
 
-input {
-    width: 100%;
-    padding: 12px 15px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--glass-border);
-    border-radius: 8px;
-    color: white;
-    outline: none;
-    transition: all 0.3s ease;
-}
+        input {
+            width: 100%;
+            padding: 12px 15px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass-border);
+            border-radius: 8px;
+            color: white;
+            outline: none;
+            transition: all 0.3s ease;
+        }
 
-input:focus {
-    border-color: var(--primary);
-    background: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
-}
+        input:focus {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 8px rgba(99, 102, 241, 0.4);
+        }
 
-/* Advanced Password Wrapper */
-.password-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
+        /* Advanced Password Wrapper */
+        .password-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
 
-.toggle-password {
-    position: absolute;
-    right: 10px;
-    background: transparent;
-    border: none;
-    color: var(--primary);
-    cursor: pointer;
-    font-size: 0.8rem;
-    font-weight: bold;
-}
+        .toggle-password {
+            position: absolute;
+            right: 10px;
+            background: transparent;
+            border: none;
+            color: var(--primary);
+            cursor: pointer;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
 
-button[type="submit"] {
-    width: 100%;
-    padding: 12px;
-    margin-top: 1rem;
-    border: none;
-    border-radius: 8px;
-    background: var(--primary);
-    color: white;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background 0.3s ease, transform 0.2s active;
-}
+        button[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin-top: 1rem;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease, transform 0.2s active;
+        }
 
-button[type="submit"]:hover {
-    background: var(--primary-hover);
-}
+        button[type="submit"]:hover {
+            background: var(--primary-hover);
+        }
 
-button[type="submit"]:active {
-    transform: scale(0.98);
-}
+        button[type="submit"]:active {
+            transform: scale(0.98);
+        }
 
-p {
-    text-align: center;
-    margin-top: 1.5rem;
-    font-size: 0.85rem;
-}
+        p {
+            text-align: center;
+            margin-top: 1.5rem;
+            font-size: 0.85rem;
+        }
 
-a {
-    color: var(--primary);
-    text-decoration: none;
-    font-weight: bold;
-}
+        a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+        }
 
-a:hover {
-    text-decoration: underline;
-}
+        a:hover {
+            text-decoration: underline;
+        }
 
-.error-msg {
-    color: var(--error);
-    font-size: 0.75rem;
-    margin-top: 4px;
-    display: block;
-}
+        .error-msg {
+            color: var(--error);
+            font-size: 0.75rem;
+            margin-top: 4px;
+            display: block;
+        }
 
-/* Smooth fade-in for switching forms */
-form {
-    animation: fadeIn 0.5s ease-in-out;
-}
+        /* Smooth fade-in for switching forms */
+        form {
+            animation: fadeIn 0.5s ease-in-out;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
 
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
     </style>
     <!-- <link rel="stylesheet" href="style.css"> -->
 </head>

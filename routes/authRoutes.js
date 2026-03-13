@@ -22,18 +22,18 @@ router.get("/dashboard-data", verifyToken, getDashboardData);
 // ==========================================
 
 // SHARED: Only SuperAdmin and Admin can access reports
-router.get("/admin/reports", 
-    verifyToken, 
-    authorizeRole("superadmin", "admin"), 
+router.get("/admin/reports",
+    verifyToken,
+    authorizeRole("superadmin", "admin"),
     (req, res) => {
         res.json({ message: "This is a shared report for Admins and SuperAdmins" });
     }
 );
 
 // EXCLUSIVE: Only SuperAdmin can reset the system
-router.delete("/admin/system-reset", 
-    verifyToken, 
-    authorizeRole("superadmin"), 
+router.delete("/admin/system-reset",
+    verifyToken,
+    authorizeRole("superadmin"),
     (req, res) => {
         res.json({ message: "System resetting... (SuperAdmin Only)" });
     }

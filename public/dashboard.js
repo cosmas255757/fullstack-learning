@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Update Basic Welcome Info
     const welcomeMsg = document.getElementById('welcomeMessage');
     const roleDisp = document.getElementById('roleDisplay');
-    
+
     if (welcomeMsg) welcomeMsg.innerText = `HELLO ${name.toUpperCase()}, YOU ARE ${role.toUpperCase()}`;
     if (roleDisp) roleDisp.innerText = `Role: ${role.replace('_', ' ')}`;
 
@@ -31,10 +31,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (role === 'superadmin') {
         if (sections.management) sections.management.style.display = 'block';
         if (sections.system) sections.system.style.display = 'block';
-    } 
+    }
     else if (role === 'admin') {
         if (sections.management) sections.management.style.display = 'block';
-    } 
+    }
     else if (role === 'borrower') {
         if (sections.borrower) sections.borrower.style.display = 'block';
     }
@@ -46,9 +46,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         const response = await fetch('http://localhost:3000/api/dashboard-data', {
             headers: { 'Authorization': `Bearer ${token}` }
         });
-        
+
         const result = await response.json();
-        
+
         if (result.success) {
             console.log("Fetched Role Data:", result.data);
             // Example: Update a specific stat if it exists in the data

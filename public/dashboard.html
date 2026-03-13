@@ -1,190 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>User Dashboard</title>
     <style>
         /* Reuse variables for consistency */
-:root {
-    --primary: #6366f1;
-    --danger: #ef4444;
-    --success: #22c55e;
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.1);
-    --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-}
+        :root {
+            --primary: #6366f1;
+            --danger: #ef4444;
+            --success: #22c55e;
+            --glass-bg: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --bg-gradient: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        }
 
-body {
-    margin: 0;
-    font-family: 'Inter', system-ui, sans-serif;
-    background: var(--bg-gradient);
-    color: white;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-}
+        body {
+            margin: 0;
+            font-family: 'Inter', system-ui, sans-serif;
+            background: var(--bg-gradient);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
 
-.dashboard-card {
-    background: var(--glass-bg);
-    backdrop-filter: blur(12px);
-    border: 1px solid var(--glass-border);
-    border-radius: 24px;
-    padding: 2.5rem;
-    width: 100%;
-    max-width: 600px;
-    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
-}
+        .dashboard-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 600px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
 
-#welcomeMessage {
-    font-size: 1.8rem;
-    margin-bottom: 0.5rem;
-    background: linear-gradient(to right, #fff, #94a3b8);
-    
-    /* Standard property first */
-    background-clip: text; 
-    /* Vendor prefix for Safari/Chrome */
-    -webkit-background-clip: text; 
-    
-    -webkit-text-fill-color: transparent;
-}
+        #welcomeMessage {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(to right, #fff, #94a3b8);
+
+            /* Standard property first */
+            background-clip: text;
+            /* Vendor prefix for Safari/Chrome */
+            -webkit-background-clip: text;
+
+            -webkit-text-fill-color: transparent;
+        }
 
 
-/* Role Badge Styling */
-.role-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 99px;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    background: var(--primary);
-    margin-bottom: 2rem;
-    box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
-}
+        /* Role Badge Styling */
+        .role-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background: var(--primary);
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 10px rgba(99, 102, 241, 0.3);
+        }
 
-/* Section & Grid Layout */
-section {
-    margin-top: 1.5rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--glass-border);
-    animation: slideUp 0.4s ease-out forwards;
-}
+        /* Section & Grid Layout */
+        section {
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--glass-border);
+            animation: slideUp 0.4s ease-out forwards;
+        }
 
-h3 {
-    font-size: 1rem;
-    color: #94a3b8;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-}
+        h3 {
+            font-size: 1rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
 
-/* Dashboard Buttons */
-button {
-    background: rgba(255, 255, 255, 0.05);
-    color: white;
-    border: 1px solid var(--glass-border);
-    padding: 12px 18px;
-    border-radius: 12px;
-    cursor: pointer;
-    font-size: 0.9rem;
-    margin: 5px;
-    transition: all 0.2s ease;
-}
+        /* Dashboard Buttons */
+        button {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid var(--glass-border);
+            padding: 12px 18px;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            margin: 5px;
+            transition: all 0.2s ease;
+        }
 
-button:hover {
-    background: var(--primary);
-    border-color: var(--primary);
-    transform: translateY(-2px);
-}
+        button:hover {
+            background: var(--primary);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
 
-/* Specific button styles */
-#systemSection button {
-    border-color: rgba(239, 68, 68, 0.3);
-}
+        /* Specific button styles */
+        #systemSection button {
+            border-color: rgba(239, 68, 68, 0.3);
+        }
 
-#systemSection button:hover {
-    background: var(--danger);
-    border-color: var(--danger);
-}
+        #systemSection button:hover {
+            background: var(--danger);
+            border-color: var(--danger);
+        }
 
-.logout-btn {
-    width: 100%;
-    margin-top: 2rem;
-    background: transparent;
-    border: 1px solid var(--danger);
-    color: var(--danger);
-    font-weight: 600;
-}
+        .logout-btn {
+            width: 100%;
+            margin-top: 2rem;
+            background: transparent;
+            border: 1px solid var(--danger);
+            color: var(--danger);
+            font-weight: 600;
+        }
 
-.logout-btn:hover {
-    background: var(--danger);
-    color: white;
-}
+        .logout-btn:hover {
+            background: var(--danger);
+            color: white;
+        }
 
-/* Animations */
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(15px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        /* Animations */
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
 
-/* Responsive Grid for Buttons */
-@media (min-width: 480px) {
-    section div, section {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 10px;
-    }
-    button {
-        flex: 1 1 calc(50% - 20px); /* Two buttons per row */
-        margin: 0;
-    }
-}
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
+        /* Responsive Grid for Buttons */
+        @media (min-width: 480px) {
+
+            section div,
+            section {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            button {
+                flex: 1 1 calc(50% - 20px);
+                /* Two buttons per row */
+                margin: 0;
+            }
+        }
     </style>
     <!-- <link rel="stylesheet" href="style.css"> -->
 </head>
+
 <body>
-<div class="dashboard-card">
-    <h1 id="welcomeMessage">Loading...</h1>
-    <div id="roleDisplay" class="role-badge"></div>
+    <div class="dashboard-card">
+        <h1 id="welcomeMessage">Loading...</h1>
+        <div id="roleDisplay" class="role-badge"></div>
 
-    <!-- ROLE SPECIFIC SECTIONS -->
-    
-    <!-- 1. Shared by SuperAdmin & Admin -->
-    <section id="managementSection" style="display: none;">
-        <h3>Management Tools</h3>
-        <button>View All Users</button>
-        <button>Approve Loans</button>
-    </section>
+        <!-- ROLE SPECIFIC SECTIONS -->
 
-    <!-- 2. Exclusive to SuperAdmin -->
-    <section id="systemSection" style="display: none;">
-        <h3>System Settings</h3>
-        <button>View Server Logs</button>
-        <button>Delete Accounts</button>
-    </section>
+        <!-- 1. Shared by SuperAdmin & Admin -->
+        <section id="managementSection" style="display: none;">
+            <h3>Management Tools</h3>
+            <button>View All Users</button>
+            <button>Approve Loans</button>
+        </section>
 
-    <!-- 3. Exclusive to Borrower -->
-    <section id="borrowerSection" style="display: none;">
-        <h3>My Loans</h3>
-        <button>Apply for New Loan</button>
-        <button>Payment History</button>
-    </section>
+        <!-- 2. Exclusive to SuperAdmin -->
+        <section id="systemSection" style="display: none;">
+            <h3>System Settings</h3>
+            <button>View Server Logs</button>
+            <button>Delete Accounts</button>
+        </section>
 
-    <!-- 4. Shared by Everyone -->
-    <section id="commonSection">
-        <h3>Account</h3>
-        <button>Edit Profile</button>
-    </section>
+        <!-- 3. Exclusive to Borrower -->
+        <section id="borrowerSection" style="display: none;">
+            <h3>My Loans</h3>
+            <button>Apply for New Loan</button>
+            <button>Payment History</button>
+        </section>
 
-    <br>
-    <button id="logoutBtn" class="logout-btn">Logout</button>
-</div>
+        <!-- 4. Shared by Everyone -->
+        <section id="commonSection">
+            <h3>Account</h3>
+            <button>Edit Profile</button>
+        </section>
+
+        <br>
+        <button id="logoutBtn" class="logout-btn">Logout</button>
+    </div>
 
     <script src="dashboard.js"></script>
 </body>
+
 </html>

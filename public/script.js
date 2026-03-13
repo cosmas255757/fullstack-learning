@@ -41,7 +41,7 @@ document.querySelectorAll('.toggle-password').forEach(button => {
 // ==========================================
 regForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     // Clear Errors
     regForm.querySelectorAll('.error-msg').forEach(s => s.textContent = '');
 
@@ -98,7 +98,7 @@ regForm?.addEventListener('submit', async (e) => {
 // ==========================================
 loginForm?.addEventListener('submit', async (e) => {
     e.preventDefault();
-    
+
     loginForm.querySelectorAll('.error-msg').forEach(s => s.textContent = '');
 
     const email = document.getElementById('loginEmail').value.trim();
@@ -129,11 +129,6 @@ loginForm?.addEventListener('submit', async (e) => {
         alert('Server connection failed.');
     }
 });
-
-
-
-
-
 
 
 
